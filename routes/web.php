@@ -13,6 +13,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/', [ApartmentController::class, 'publicIndex'])->name('home');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -20,7 +23,7 @@ Route::middleware('auth')->group(function () {
     // Rute za upravljanje apartmanima
     Route::resource('apartments', ApartmentController::class);
 
-    Route::get('/', [ApartmentController::class, 'publicIndex'])->name('home');
+    
 
 });
 
