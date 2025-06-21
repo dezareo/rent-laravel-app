@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ApartmentController; // Dodaj ovu liniju
+use App\Http\Controllers\ApartmentController; 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
 
     // Rute za upravljanje apartmanima
     Route::resource('apartments', ApartmentController::class);
+
+    Route::get('/', [ApartmentController::class, 'publicIndex'])->name('home');
+
 });
 
 require __DIR__.'/auth.php';
